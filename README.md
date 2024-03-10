@@ -2,6 +2,9 @@
 
 1. Deploy a new contract via thirdweb to the base network
 2. Use postman to make a new api key for syndicate on the base network (https://frame.syndicate.io/)
+
+- Don't skip this. Each contract needs its own api key!!
+
 3. Make the address from syndicate as a VOTE_ON_BEHALF role on the contract
 4. In frame/app/vote/page, update VOTE_CONTRACT to the address of the new contract
 5. Update the contractAddress in airdrop/airdrop.js to be the gaslite airdrop contract address
