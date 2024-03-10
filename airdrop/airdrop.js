@@ -4,8 +4,9 @@ const { parse } = require("csv-parse/sync");
 
 // Configurable parameters
 const BATCH_SIZE = 900; // Change this as needed
-const contractAddress = "0xf6c3555139aeA30f4a2be73EBC46ba64BAB8ac12";
-const tokenAddress = "0xA3E94bc7bfE299Fbdc28Df022CfD01D4597a3f43";
+//const contractAddress = "0xf6c3555139aeA30f4a2be73EBC46ba64BAB8ac12"; // sepolia
+const contractAddress = "0x09350F89e2D7B6e96bA730783c2d76137B045FEF";
+const tokenAddress = "0x6e259376Bac4aB281C9d1C89a6c0149D7E8a0d42"; // mainnet base token address
 const privateKey = process.env.PRIVATE_KEY; // Be careful with your private key
 const providerURL = `https://base-sepolia.g.alchemy.com/v2/BhSwGHAbgcb2uN3HyD_lI233czDJrOwX`; // e.g., Infura or Alchemy URL
 const provider = new ethers.providers.JsonRpcProvider(providerURL);
@@ -19,9 +20,9 @@ const gasliteDropContract = new ethers.Contract(contractAddress, contractABI, wa
 // File paths
 const files = [
     "unique_pawth_holders.csv",
-    // "base_warpcast_followers.csv",
-    // "mochi.csv",
-    // "toshi.csv"
+    "base_warpcast_followers.csv",
+    "mochi.csv",
+    "toshi.csv"
 ];
 
 const erc20ABI = [

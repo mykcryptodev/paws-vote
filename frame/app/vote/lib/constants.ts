@@ -1,4 +1,5 @@
 import { defineChain } from 'viem';
+import { base } from 'viem/chains';
 
 const syndicate = defineChain({
   id: 5101,
@@ -18,5 +19,7 @@ const syndicate = defineChain({
   },
 });
 
-export const VOTE_CONTRACT = "0x41f999597F62991dE0f43860023fA2f29A99A8A5";
-export const VOTE_CHAIN = syndicate;
+//export const VOTE_CONTRACT = "0x41f999597F62991dE0f43860023fA2f29A99A8A5";
+//export const VOTE_CHAIN = syndicate;
+export const VOTE_CONTRACT = "0x6e259376Bac4aB281C9d1C89a6c0149D7E8a0d42";
+export const VOTE_CHAIN = base;
