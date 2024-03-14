@@ -64,7 +64,7 @@ export default async function Home({
 
   const imageBaseUrl = 'https://ipfs.io/ipfs/QmVBkV18Nmuk3ktkQXpUCUtQEt6rwZyP1NP4xkEGor4a9Q/';
   const imageOops = 'https://ipfs.io/ipfs/QmeFuPTqSXJWrfs5sD58anr2xgWHPss7oFdCiC7CjvSLmt/oops.png';
-  const voteImgUrl = 'https://ipfs.io/ipfs/QmT4LxVVuXhzXtzQCwc6ym4HYSMYiXMFVyLWWhC2KhkLVd/Vote!%20(1).png';
+  const voteImgUrl = 'https://ipfs.io/ipfs/QmS9YyjVtcbCGdbfL4dJwPwDLo2ZNSppWgRaJYYSEhn8ew/Copy%20of%20Vote!.png';
 
   const frameMessage = await getFrameMessage(previousFrame.postBody, {
     hubHttpUrl: DEFAULT_DEBUGGER_HUB_URL,
