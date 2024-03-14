@@ -45,7 +45,6 @@ export const checkVoteEligibility = async (requesterFid: number | undefined) => 
         type: "function",
       }],
       functionName: "votingEnd",
-      args: [],
     }),
     publicClient.readContract({
       address: VOTE_CONTRACT,
