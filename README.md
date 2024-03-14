@@ -10,6 +10,6 @@
 5. Update the contractAddress in airdrop/airdrop.js to be the gaslite airdrop contract address ✅
 6. Update the tokenAddress in airdrop/airdrop.js to be the contract deployed in step 1 ✅
 7. Create the vote in the vote contract
-8. Run the airdrop by going to /airdrop and running node airdrop.js (this could be gassy before decun)
+8. Run the airdrop by going to /airdrop and running node airdrop.js (this could be gassy before decun) ✅
 9. Update the contract address in the nft marketplace template github to let people vote on the dapp ✅
 10. Post the farcaster frame
