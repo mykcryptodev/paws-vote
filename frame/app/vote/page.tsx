@@ -33,6 +33,8 @@ const reducer: FrameReducer<State> = (state, action) => {
   if (buttonIndex && buttonIndex === 2 && state.pageIndex === 0) {
     return {
       pageIndex: votingPage,
+      transactionId: null,
+      vote: null,
     };
   }
 
@@ -40,12 +42,15 @@ const reducer: FrameReducer<State> = (state, action) => {
   if (buttonIndex && buttonIndex === 1 && state.pageIndex < votingPage && state.pageIndex > 0) {
     return {
       pageIndex: 0,
+      transactionId: null,
+      vote: null,
     };
   }
 
   return {
     pageIndex: state.pageIndex + 1,
     vote: state.pageIndex === votingPage ? buttonIndex as 1 | 2 | 3 | 4 : null,
+    transactionId: null,
   };
 };
 
