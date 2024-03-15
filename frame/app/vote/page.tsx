@@ -196,7 +196,7 @@ export default async function Home({
 
         {state.pageIndex === 1 ? (<FrameButton action="link" target={`https://www.paws.org/donate/cryptocurrency-giving/pawthereum/`}>Read Blog</FrameButton>) : null} 
         {state.pageIndex === 2 ? (<FrameButton action="link" target={`https://www.youtube.com/live/jOtKj7gN3eY?si=5p0Oxmwz4d0bHZRf&t=443`}>Watch Podcast</FrameButton>) : null} 
-        {state.pageIndex === 3 ? (<FrameButton action="link" target={`https://blog.pawthereum.com/`}>Airdrop Eligibility</FrameButton>) : null} 
+        {state.pageIndex === 3 ? (<FrameButton action="link" target={`https://blog.pawthereum.com/airdrop-campaign-for-wildlife-center-room-naming-initiative-12acee6eeaa3`}>Airdrop Eligibility</FrameButton>) : null} 
         {state.pageIndex === 5 ? (<FrameButton action="link" target={`https://snapshot.org/#/pawthereum.eth/proposal/0xc19f4895f248a344d8bd761d477a17ee00c78f74ce7810f69edcb8a1551efe22`}>Base Migration</FrameButton>) : null} 
 
         {state.pageIndex && state.pageIndex < votingPage ? (<FrameButton>→</FrameButton>) : null}
