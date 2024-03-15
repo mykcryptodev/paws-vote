@@ -14,6 +14,7 @@ import { DEFAULT_DEBUGGER_HUB_URL, createDebugUrl } from "../debug";
 import { getAddressForFid } from "frames.js";
 import { VOTE_CONTRACT } from "./lib/constants";
 import { checkVoteEligibility } from "./lib/checkVoteEligibility";
+import { castVote } from "./lib/castVote";
 
 type State = {
   vote: null | 1 | 2 | 3 | 4;
@@ -67,9 +68,9 @@ export default async function Home({
   const voteImgUrl = 'https://ipfs.io/ipfs/QmS9YyjVtcbCGdbfL4dJwPwDLo2ZNSppWgRaJYYSEhn8ew/Copy%20of%20Vote!.png';
 
   const frameMessage = await getFrameMessage(previousFrame.postBody, {
-    // hubHttpUrl: DEFAULT_DEBUGGER_HUB_URL,
-    hubHttpUrl: "https://hub.freefarcasterhub.com:3281",
-    fetchHubContext: true,
+    hubHttpUrl: DEFAULT_DEBUGGER_HUB_URL,
+    // hubHttpUrl: "https://hub.freefarcasterhub.com:3281",
+    // fetchHubContext: true,
   });
 
   if (frameMessage && !frameMessage?.isValid) {
@@ -132,23 +133,8 @@ export default async function Home({
     console.log('voting option is: ', state.vote - 1);
 
     try {
-      const voteRes = await fetch(`https://frame.syndicate.io/api/v2/sendTransaction`, {
-        method: "POST",
-        headers: {
-          "Content-Type": "application/json",
-          "Authorization": `Bearer ${process.env.SYNDICATE_API_KEY}`,
-        },
-        body: JSON.stringify({
-          frameTrustedData: trustedData,
-          contractAddress: VOTE_CONTRACT,
-          functionSignature: "castVoteOnBehalf(address _voter, uint256 _optionId)",
-          args: { _voter: address, _optionId: state.vote - 1 },
-        }),
-      });
-  
-      const voteResJson = await voteRes.json();
-      console.log({ voteResJson })
-      if (voteResJson.status ? voteResJson.status === "false" : false) {
+      const result = await castVote(address, state.vote - 1);
+      if (!result.tx || result.error !== null) {
         state.pageIndex = -1;
         return (
           <FrameContainer
@@ -163,7 +149,7 @@ export default async function Home({
           </FrameContainer>
         )
       }
-      state.transactionId = voteResJson.data.transactionId;
+      state.transactionId = result.tx;
     } catch (e) {
       return (
         <FrameContainer
