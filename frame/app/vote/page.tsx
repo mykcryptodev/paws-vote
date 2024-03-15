@@ -68,9 +68,9 @@ export default async function Home({
   const voteImgUrl = 'https://ipfs.io/ipfs/QmS9YyjVtcbCGdbfL4dJwPwDLo2ZNSppWgRaJYYSEhn8ew/Copy%20of%20Vote!.png';
 
   const frameMessage = await getFrameMessage(previousFrame.postBody, {
-    hubHttpUrl: DEFAULT_DEBUGGER_HUB_URL,
-    // hubHttpUrl: "https://hub.freefarcasterhub.com:3281",
-    // fetchHubContext: true,
+    // hubHttpUrl: DEFAULT_DEBUGGER_HUB_URL,
+    hubHttpUrl: "https://hub.freefarcasterhub.com:3281",
+    fetchHubContext: true,
   });
 
   if (frameMessage && !frameMessage?.isValid) {
