@@ -8,6 +8,7 @@ export const checkVoteEligibility = async (requesterFid: number | undefined) => 
     votingEnded: false,
     isEligible: false,
     hasVotingTokens: false,
+    userVote: 0,
   };
   const address = await getAddressForFid({
     fid: requesterFid,
@@ -17,12 +18,13 @@ export const checkVoteEligibility = async (requesterFid: number | undefined) => 
     hasVoted: false,
     votingEnded: false,
     isEligible: false,
+    userVote: 0,
   };
   const publicClient = createPublicClient({
     chain: VOTE_CHAIN,
     transport: http()
   });
-  const [hasVoted, voteEnded, votingTokenBalance] = await Promise.all([
+  const [hasVoted, voteEnded, votingTokenBalance, userVote] = await Promise.all([
     publicClient.readContract({
       address: VOTE_CONTRACT,
       abi: [{
@@ -58,6 +60,18 @@ export const checkVoteEligibility = async (requesterFid: number | undefined) => 
       functionName: "balanceOf",
       args: [address],
     }),
+    publicClient.readContract({
+      address: VOTE_CONTRACT,
+      abi: [{
+        inputs: [{ name: "address", type: "address"}],
+        name: "userVote",
+        outputs: [{ name: "", type: "uint256" }],
+        stateMutability: "view",
+        type: "function",
+      }],
+      functionName: "userVote",
+      args: [address],
+    }),
   ]);
   const now = Math.floor(Date.now() / 1000);
   const votingEndTimestamp = Number(voteEnded.toString());
@@ -78,6 +92,7 @@ export const checkVoteEligibility = async (requesterFid: number | undefined) => 
     isEligible,
     hasVotingTokens,
     votingTokenBalance: votingTokenBalance.toString(),
+    userVote,
   });
 
   return {
@@ -85,5 +100,6 @@ export const checkVoteEligibility = async (requesterFid: number | undefined) => 
     votingEnded,
     isEligible,
     hasVotingTokens,
+    userVote: Number(userVote.toString()),
   };
 };

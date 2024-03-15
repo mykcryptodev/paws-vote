@@ -106,11 +106,28 @@ export default async function Home({
 
   // check eligibility
   if (state.pageIndex === votingPage) {
-    const { hasVoted, votingEnded, isEligible } = await checkVoteEligibility(
+    const { hasVoted, votingEnded, isEligible, userVote } = await checkVoteEligibility(
       frameMessage?.requesterFid
     );
     if (hasVoted) {
-      imageUrl = `${imageBaseUrl}thanks.png`;
+      const tyImgBase = 'https://ipfs.io/ipfs/QmaHe4DFzWjQKpyR9SKWHUZq47G7baQeZkGHde5s3aVyQE/'
+      switch (userVote) {
+        case 0:
+          imageUrl = `${tyImgBase}1.png`;
+          break;
+        case 1:
+          imageUrl = `${tyImgBase}2.png`;
+          break;
+        case 2:
+          imageUrl = `${tyImgBase}3.png`;
+          break;
+        case 3:
+          imageUrl = `${tyImgBase}4.png`;
+          break;
+        default:
+          imageUrl = `${imageBaseUrl}thanks.png`;
+          break;
+      }
       state.pageIndex = votingPage + 2;
     } else if (votingEnded) {
       imageUrl = `${imageBaseUrl}over.png`;
