@@ -72,6 +72,14 @@ export const checkVoteEligibility = async (requesterFid: number | undefined) => 
   const votingEnded = now > votingEndTimestamp;
   const isEligible = !hasVoted && !votingEnded && hasVotingTokens;
 
+  console.log({
+    hasVoted,
+    votingEnded,
+    isEligible,
+    hasVotingTokens,
+    votingTokenBalance: votingTokenBalance.toString(),
+  });
+
   return {
     hasVoted,
     votingEnded,
