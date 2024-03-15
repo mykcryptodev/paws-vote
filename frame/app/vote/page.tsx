@@ -121,12 +121,15 @@ export default async function Home({
   }
 
   // Cast vote if user voted
-  if (state.pageIndex === votingPage + 1 && previousFrame && frameMessage) {
+  if (state.pageIndex === votingPage + 1 && previousFrame && frameMessage && state.vote !== null) {
     trustedData = previousFrame.postBody?.trustedData.messageBytes;
     const address = await getAddressForFid({
       fid: frameMessage.requesterFid,
       options: { fallbackToCustodyAddress: true }
     });
+
+    console.log('state.vote is', state.vote);
+    console.log('voting option is: ', state.vote - 1);
 
     try {
       const voteRes = await fetch(`https://frame.syndicate.io/api/v2/sendTransaction`, {
@@ -139,7 +142,7 @@ export default async function Home({
           frameTrustedData: trustedData,
           contractAddress: VOTE_CONTRACT,
           functionSignature: "castVoteOnBehalf(address _voter, uint256 _optionId)",
-          args: { _voter: address, _optionId: state.vote },
+          args: { _voter: address, _optionId: state.vote - 1 },
         }),
       });
   
